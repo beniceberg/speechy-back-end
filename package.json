@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/beniceberg/speechy-back-end/issues"
   },
-  "homepage": "https://github.com/beniceberg/speechy-back-end#readme"
+  "homepage": "https://github.com/beniceberg/speechy-back-end#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "express-rate-limit": "^2.11.0",
+    "express-secure-only": "^0.2.1",
+    "nodemon": "^1.17.1",
+    "vcap_services": "^0.3.4",
+    "watson-developer-cloud": "^3.0.7",
+    "webpack": "^4.0.1"
+  }
 }
