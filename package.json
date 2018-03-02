@@ -1,0 +1,19 @@
+{
+  "name": "speechy-back-end",
+  "version": "1.0.0",
+  "description": "back-end for speechy app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beniceberg/speechy-back-end.git"
+  },
+  "author": "Ben Iceberg (ben.iceberg@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beniceberg/speechy-back-end/issues"
+  },
+  "homepage": "https://github.com/beniceberg/speechy-back-end#readme"
+}
