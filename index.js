@@ -24,14 +24,20 @@ const vcapServices = require('vcap_services');
 const webpack = require('webpack');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// require('dotenv').config();
+const morgan = require('morgan')
+
+require('./db')
 
 // allows environment properties to be set in a file named .env
 require('dotenv').load({ silent: true });
 
 const routes = require('./routes/router');
 
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 app.use(cors());
+app.use(bodyParser.json());
+app.use('', routes);
+
 // on bluemix, enable rate-limiting and force https
 // if (process.env.VCAP_SERVICES) {
 //   // enable rate-limiting
@@ -40,7 +46,7 @@ app.use(cors());
 //
 //   const limiter = new RateLimit({
 //     windowMs: 15 * 60 * 1000, // 15 minutes
-//     max: 300, // limit each IP to 100 requests per windowMs
+//     max: 100, // limit each IP to 100 requests per windowMs
 //     delayMs: 0 // disable delaying - full speed until the max limit is reached
 //   });
 //
@@ -53,15 +59,9 @@ app.use(cors());
 //   app.use(secure());
 // }
 
-// app.use(bodyParser.json());
-
-app.use('', routes);
-
 const port = process.env.PORT;
 
-app.listen(port, function() {
-  console.log('Speechy server live at http://localhost:%s/', port);
-});
+app.listen(port, () => console.log('Speechy server live at http://localhost:%s/', port));
 
 // Chrome requires https to access the user's microphone unless it's a localhost url so
 // this sets up a basic server on port 3001 using an included self-signed certificate
