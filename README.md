@@ -17,7 +17,7 @@ Speechy-server is the back-end for speechy app.
 * Redux
 * Webpack
 
-# Back-end: 
+# Back-end:
 
 * Koa
 * IBM Watson
@@ -44,10 +44,10 @@ After cloning the repo you'll have to :
 
 ### 1. You use an online database
 
-In this case you should: 
+In this case you should:
 
 * Create a free account at [mLab](https://mlab.com/)
-* Create a .env file containing: 
+* Create a .env file containing:
 
     ```javascript
     DB_USERNAME=YOUR_DB_USERNAME
@@ -55,6 +55,11 @@ In this case you should:
     DB_HOST=YOUR_DB_HOST
     DB_PORT=YOUR_DB_PORT
     DB_NAME=YOUR_DB_NAME
+
+    SPEECH_TO_TEXT_USERNAME=IBM_WATSON_SPEECH_USERNAME
+    SPEECH_TO_TEXT_PASSWORD=IBM_WATSON_SPEECH_PASSWORD
+    PORT=3002
+    VCAP_SERVICES=TRUE_OR_FALSE
     ```
 
  ### Connet to Database
