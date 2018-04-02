@@ -11,12 +11,8 @@ exports.listAttempts = async (req,res) => {
 }
 
 exports.addAttempt = async (req, res) => {
-  if(!req.body.videoURL) return res.status(400).json({
-    error: 'No video sent'
-  });
 
   const presentation = await Presentation.findOne({_id: req.params.id});
-
   const attempt = await Attempt.create({
     presentation: presentation._id,
     date: Date.now(),
@@ -29,15 +25,36 @@ exports.addAttempt = async (req, res) => {
   presentation.attempts.push(attempt._id);
   await presentation.save();
 
-  res.status(201).json(attempt));
+  res.status(201).json(presentation);
 }
 
-exports.deleteAttempt = (req, res) => {
+exports.deleteAttempt = async (req, res) => {
   const presentationId = req.params.id;
   const attemptId = req.params.attemptId;
-  Attempt.findOneAndRemove({
-    _id: attemptId
-  })
-  .then(() => res.sendStatus(204))
-  .catch(() => res.sendStatus(404))
+
+  const presentation = await Presentation.findOne({_id: presentationId})
+    .catch(() => res.sendStatus(404))
+
+  const index = presentation.attempts.indexOf(attemptId);
+
+  presentation.attempts.splice(index, 1);
+  await presentation.save(function (err) {
+    if (err) return handleError(err);
+    return res.status(204).json(presentation);
+    // saved!
+  });
+}
+
+exports.getAttempt = async (req, res) => {
+  const presentationId = req.params.id;
+  const attemptId = req.params.attemptId;
+
+  const presentationIndex = await Presentation.findOne({_id: presentationId});
+  const presentation = await Presentation.findOne({_id: presentationId}).populate('attempts')
+    .catch(() => res.sendStatus(404))
+
+  const index = presentationIndex.attempts.indexOf(attemptId);
+  const attempt = presentation.attempts[index];
+
+  res.status(200).json(attempt);
 }

@@ -21,5 +21,6 @@ router.route('/presentations/:id').delete(presentationController.deletePresentat
 router.route('/presentations/:id/attempts').get(attemptController.listAttempts);
 router.route('/presentations/:id/attempts').post(attemptController.addAttempt);
 router.route('/presentations/:id/attempts/:attemptId').delete(attemptController.deleteAttempt);
+router.route('/presentations/:id/attempts/:attemptId').get(attemptController.getAttempt);
 
 module.exports = router;
