@@ -1,3 +1,5 @@
+![Speechy](https://github.com/beniceberg/speechy/blob/master/src/assets/screenshot/Screen%20Shot%202018-04-02%20at%2012.49.10.png)
+
 # Speechy-server
 
 Speechy-server is the back-end for speechy app.
